@@ -1,0 +1,55 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaApplication6Mvvm.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="450"
+        Width="400" Height="450"
+        x:Class="AvaloniaApplication6Mvvm.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvaloniaApplication6Mvvm">
+
+    <Design.DataContext>
+        <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+    
+    <Window.Styles>
+        <Style Selector="TextBox">
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="Margin" Value="0 5" />
+        </Style>
+        <Style Selector="Button">
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+    </Window.Styles>
+    
+    <StackPanel Width="300" Margin="50">
+
+        <TextBox Watermark="First Name" Text="{Binding FirstName}"></TextBox>
+        <TextBox Watermark="Last Name" Text="{Binding LastName}"></TextBox>
+        
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <TextBox Watermark="Age" Text="{Binding Age}"></TextBox>
+            <Separator Width="4"></Separator>
+            <Button Command="{Binding DecreaseAge}">-</Button>
+            <Button Command="{Binding IncreaseAge}">+</Button>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+            <Button Margin="0 10"  Command="{Binding Save}">Save</Button>
+            <Label Content="{Binding DraftText}" 
+                   VerticalAlignment="Center" FontSize="8" FontStyle="Italic" />    
+        </StackPanel>
+        
+        <Separator Height="40"></Separator>
+        
+        <Panel Background="LightBlue">
+            <TextBlock Margin="10" Text="{Binding SavedText}"></TextBlock>    
+        </Panel>
+
+    </StackPanel>
+
+</Window>
